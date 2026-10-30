@@ -93,6 +93,14 @@ define( 'WP_MAX_MEMORY_LIMIT', '256M' );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
+/* Use local URLs when this copy of WordPress is opened through the local server. */
+$local_host = isset( $_SERVER['HTTP_HOST'] ) ? strtolower( $_SERVER['HTTP_HOST'] ) : '';
+if ( in_array( $local_host, array( 'localhost:8061', '127.0.0.1:8061', '[::1]:8061' ), true ) ) {
+	define( 'WP_HOME', 'http://localhost:8061' );
+	define( 'WP_SITEURL', 'http://localhost:8061' );
+}
+unset( $local_host );
+
 
 
 /* That's all, stop editing! Happy publishing. */
